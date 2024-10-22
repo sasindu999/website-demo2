@@ -81,6 +81,21 @@ nav ul li a:hover {
     border: 3px solid #00ff88;
 }
 
+.social-links {
+    margin: 20px 0;
+}
+
+.social-icon {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #00ff88;
+}
+
 .intro .btn {
     background: linear-gradient(90deg, #00ff88, #00a1ff);
     color: white;
@@ -90,6 +105,8 @@ nav ul li a:hover {
     font-size: 18px;
     font-weight: bold;
     transition: transform 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
 }
 
 .intro .btn:hover {
@@ -99,13 +116,6 @@ nav ul li a:hover {
 #about {
     padding: 100px 20px;
     background-color: #0a1f1c;
-}
-
-#about h2 {
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 40px;
-    color: #fff;
 }
 
 .about-content {
@@ -136,7 +146,7 @@ nav ul li a:hover {
     background-color: #030908;
 }
 
-#skills h2 {
+h2 {
     text-align: center;
     font-size: 40px;
     margin-bottom: 40px;
@@ -152,70 +162,56 @@ nav ul li a:hover {
     padding: 20px;
 }
 
-.skill-card {
+.skill-category {
     background: #0a1f1c;
     border-radius: 10px;
     padding: 25px;
     transition: transform 0.3s ease;
 }
 
-.skill-card:hover {
+.skill-category:hover {
     transform: translateY(-5px);
 }
 
-.skill-info h3 {
-    margin-bottom: 15px;
-    color: #fff;
+.skill-category h3 {
+    color: #00ff88;
+    margin-bottom: 20px;
     font-size: 1.5rem;
+}
+
+.skill-item {
+    margin-bottom: 20px;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.percentage {
+    color: #00a1ff;
 }
 
 .skill-bar {
     background: #1a2928;
     height: 10px;
     border-radius: 5px;
-    margin-bottom: 20px;
     overflow: hidden;
 }
 
 .progress {
-    background: linear-gradient(90deg, #00ff88 0%, #00a1ff 100%);
+    width: 0;
     height: 100%;
+    background: linear-gradient(90deg, #00ff88, #00a1ff);
     border-radius: 5px;
-    position: relative;
-}
-
-.skill-details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.skill-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #ccc;
-}
-
-.skill-item p {
-    margin: 0;
-}
-
-.skill-percentage {
-    color: #00ff88;
-    font-weight: bold;
+    transition: width 1.5s ease-in-out;
 }
 
 #portfolio {
     padding: 100px 20px;
     background-color: #0a1f1c;
-}
-
-#portfolio h2 {
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 40px;
-    color: #fff;
 }
 
 .portfolio-content {
@@ -232,6 +228,7 @@ nav ul li a:hover {
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .project:hover {
@@ -248,18 +245,13 @@ nav ul li a:hover {
     padding: 20px;
     color: #fff;
     font-size: 1.2rem;
+    background: rgba(3, 9, 8, 0.9);
+    margin: 0;
 }
 
 #contact {
     padding: 100px 20px;
     background-color: #030908;
-}
-
-#contact h2 {
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 40px;
-    color: #fff;
 }
 
 #contact-form {
@@ -277,6 +269,13 @@ nav ul li a:hover {
     border: 1px solid #1a2928;
     border-radius: 5px;
     color: #fff;
+    font-size: 16px;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #00ff88;
+    outline: none;
 }
 
 #contact-form textarea {
@@ -305,16 +304,34 @@ footer {
     background-color: #0a1f1c;
     color: #888;
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
     position: relative;
-    bottom: 0;
-    width: 100%;
 }
 
-@media (max-width: 768px) {
-    .intro h1 {
-        font-size: 40px;
+footer .social-links {
+    margin-bottom: 20px;
+}
+
+footer .social-icon {
+    font-size: 24px;
+    margin: 0 15px;
+}
+
+/* Animation Classes */
+.animate-skill {
+    animation: fillBar 1.5s ease-in-out forwards;
+}
+
+@keyframes fillBar {
+    from {
+        width: 0;
     }
+    to {
+        width: var(--progress);
+    }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .intro h1 {
         font-size: 40px;
@@ -329,8 +346,7 @@ footer {
         margin-top: 20px;
     }
 
-    .skills-content,
-    .portfolio-content {
+    .skills-content {
         grid-template-columns: 1fr;
     }
 
@@ -342,7 +358,7 @@ footer {
         font-size: 18px;
     }
 
-    .skill-card {
+    .skill-category {
         margin: 10px;
     }
 
@@ -361,11 +377,12 @@ footer {
         font-size: 14px;
     }
 
-    .skill-details {
-        grid-template-columns: 1fr;
-    }
-
     .project h3 {
         font-size: 1rem;
+    }
+
+    .social-icon {
+        font-size: 20px;
+        margin: 0 8px;
     }
 }
