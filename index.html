@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sasindu Maleesha - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Me</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -22,6 +23,12 @@
             <h1>Sasindu Maleesha</h1>
             <p>Welcome to my personal website! I am a web developer and designer with a passion for creating beautiful and functional websites.</p>
             <img src="https://i.pinimg.com/236x/62/48/03/624803bee204bc2b7761449dcc502821.jpg" alt="Profile Picture">
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
             <a href="#contact" class="btn">Hire Me</a>
         </div>
     </section>
@@ -30,90 +37,138 @@
         <h2>About Me</h2>
         <div class="about-content">
             <img src="https://i.pinimg.com/236x/62/48/03/624803bee204bc2b7761449dcc502821.jpg" alt="Profile Picture">
-            <p>Hello! I am Sasindu Maleesha, a web developer from Sri Lanka. I specialize in front-end development,wordpress website development and have a passion for learning new technologies and solving complex problems.</p>
+            <p>Hello! I am Sasindu Maleesha, a web developer from City, Country. I specialize in front-end development and have a passion for learning new technologies and solving complex problems.</p>
         </div>
     </section>
 
     <section id="skills">
         <h2>Skills & Experience</h2>
         <div class="skills-content">
-            <div class="skill-card">
-                <div class="skill-info">
-                    <h3>Frontend Development</h3>
+            <div class="skill-category">
+                <h3>Frontend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>HTML5</span>
+                        <span class="percentage">95%</span>
+                    </div>
                     <div class="skill-bar">
-                        <div class="progress" style="width: 90%"></div>
+                        <div class="progress" data-progress="95"></div>
                     </div>
                 </div>
-                <div class="skill-details">
-                    <div class="skill-item">
-                        <p>HTML5</p>
-                        <div class="skill-percentage">95%</div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>CSS3</span>
+                        <span class="percentage">90%</span>
                     </div>
-                    <div class="skill-item">
-                        <p>CSS3</p>
-                        <div class="skill-percentage">90%</div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="90"></div>
                     </div>
-                    <div class="skill-item">
-                        <p>JavaScript</p>
-                        <div class="skill-percentage">85%</div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>JavaScript</span>
+                        <span class="percentage">85%</span>
                     </div>
-                    <div class="skill-item">
-                        <p>React</p>
-                        <div class="skill-percentage">80%</div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="85"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>React</span>
+                        <span class="percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="80"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="skill-card">
-                <div class="skill-info">
-                    <h3>Backend Development</h3>
+            <div class="skill-category">
+                <h3>Backend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Node.js</span>
+                        <span class="percentage">85%</span>
+                    </div>
                     <div class="skill-bar">
-                        <div class="progress" style="width: 85%"></div>
+                        <div class="progress" data-progress="85"></div>
                     </div>
                 </div>
-                <div class="skill-details">
-                    <div class="skill-item">
-                        <p>Node.js</p>
-                        <div class="skill-percentage">85%</div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Express</span>
+                        <span class="percentage">80%</span>
                     </div>
-                    <div class="skill-item">
-                        <p>Express</p>
-                        <div class="skill-percentage">80%</div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="80"></div>
                     </div>
-                    <div class="skill-item">
-                        <p>MongoDB</p>
-                        <div class="skill-percentage">75%</div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>MongoDB</span>
+                        <span class="percentage">75%</span>
                     </div>
-                    <div class="skill-item">
-                        <p>SQL</p>
-                        <div class="skill-percentage">70%</div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="75"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>SQL</span>
+                        <span class="percentage">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="70"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="skill-card">
-                <div class="skill-info">
-                    <h3>UI/UX Design</h3>
+            <div class="skill-category">
+                <h3>UI/UX Design</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Figma</span>
+                        <span class="percentage">85%</span>
+                    </div>
                     <div class="skill-bar">
-                        <div class="progress" style="width: 80%"></div>
+                        <div class="progress" data-progress="85"></div>
                     </div>
                 </div>
-                <div class="skill-details">
-                    <div class="skill-item">
-                        <p>Figma</p>
-                        <div class="skill-percentage">85%</div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Adobe XD</span>
+                        <span class="percentage">80%</span>
                     </div>
-                    <div class="skill-item">
-                        <p>Adobe XD</p>
-                        <div class="skill-percentage">80%</div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="80"></div>
                     </div>
-                    <div class="skill-item">
-                        <p>Photoshop</p>
-                        <div class="skill-percentage">75%</div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Photoshop</span>
+                        <span class="percentage">75%</span>
                     </div>
-                    <div class="skill-item">
-                        <p>Illustrator</p>
-                        <div class="skill-percentage">70%</div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="75"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Illustrator</span>
+                        <span class="percentage">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="70"></div>
                     </div>
                 </div>
             </div>
@@ -141,14 +196,20 @@
     <section id="contact">
         <h2>Contact Me</h2>
         <form id="contact-form">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Message" required></textarea>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
 
     <footer>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
         <p>© 2024 Sasindu Maleesha. All rights reserved.</p>
     </footer>
 
