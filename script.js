@@ -18,10 +18,9 @@ const auth = firebase.auth();
 // EMAILJS CONFIGURATION
 // ========================
 emailjs.init("uuSSWER-Oh7S4OsL6");
-
 const EMAILJS_SERVICE_ID = "service_qiojb9c";
 const EMAILJS_VERIFICATION_TEMPLATE_ID = "template_f98rieb";
-const EMAILJS_CONTACT_TEMPLATE_ID = "template_r09bmvf";
+const EMAILJS_CONTACT_TEMPLATE_ID = "template_38mzcyk";
 
 // ========================
 // EMAIL VERIFICATION SYSTEM
