@@ -15,9 +15,39 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 // ========================
-// EMAILJS CONFIGURATION
+// EMAILJS CONFIGURATION & TEST
 // ========================
+console.log('🔧 Initializing EmailJS...');
+
+// Initialize EmailJS
 emailjs.init("uuSSWER-Oh7S4OsL6");
+
+// Test EmailJS connection
+window.testEmailJS = function() {
+    console.log('🧪 Testing EmailJS connection...');
+    
+    const testParams = {
+        to_email: "test@example.com",
+        to_name: "Test User",
+        from_name: "Sasindu Maleesha Portfolio",
+        message: "Your verification code is: 123456\n\nThis is a test email.",
+        verification_code: "123456",
+        expiry_time: "5 minutes",
+        reply_to: "test@example.com"
+    };
+    
+    emailjs.send("service_qiojb9c", "template_f98rieb", testParams)
+        .then(function(response) {
+            console.log('✅ EmailJS TEST SUCCESS!', response);
+            alert('✅ EmailJS is working! Status: ' + response.status);
+        }, function(error) {
+            console.error('❌ EmailJS TEST FAILED:', error);
+            alert('❌ EmailJS Error: ' + JSON.stringify(error));
+        });
+};
+
+console.log('✅ EmailJS initialized. Type testEmailJS() in console to test.');
+
 const EMAILJS_SERVICE_ID = "service_qiojb9c";
 const EMAILJS_VERIFICATION_TEMPLATE_ID = "template_f98rieb";
 const EMAILJS_CONTACT_TEMPLATE_ID = "template_38mzcyk";
@@ -50,31 +80,45 @@ document.getElementById('email-verification-form').addEventListener('submit', fu
     const button = this.querySelector('button');
     const messageDiv = document.getElementById('form-message');
     
+    console.log('📧 Attempting to send email to:', email);
+    
     if (!validateEmail(email)) {
         messageDiv.textContent = '✗ Please enter a valid email address!';
         messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
         return;
     }
     
-    button.textContent = 'Sending...';
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     button.disabled = true;
     messageDiv.textContent = '';
+    messageDiv.style.display = 'none';
     
     // Generate new code
     generatedCode = generateVerificationCode();
     userEmail = email;
-    codeExpiryTime = Date.now() + (5 * 60 * 1000); // 5 minutes expiry
+    codeExpiryTime = Date.now() + (5 * 60 * 1000);
     
-    // Send code via EmailJS
+    console.log('🔑 Generated Code:', generatedCode);
+    console.log('📨 Service ID:', EMAILJS_SERVICE_ID);
+    console.log('📝 Template ID:', EMAILJS_VERIFICATION_TEMPLATE_ID);
+    
+    // Send code via EmailJS - Using message field for compatibility
     const templateParams = {
         to_email: email,
+        to_name: email.split('@')[0],
+        from_name: "Sasindu Maleesha Portfolio",
+        message: `Your verification code is: ${generatedCode}\n\nThis code will expire in 5 minutes.\n\nIf you didn't request this code, please ignore this email.`,
         verification_code: generatedCode,
-        expiry_time: '5 minutes'
+        expiry_time: '5 minutes',
+        reply_to: email
     };
+    
+    console.log('📤 Sending with params:', templateParams);
     
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_VERIFICATION_TEMPLATE_ID, templateParams)
         .then(function(response) {
-            console.log('Verification code sent!', response.status);
+            console.log('✅ SUCCESS! Email sent:', response.status, response.text);
             
             // Show code verification step
             document.getElementById('email-step').style.display = 'none';
@@ -84,16 +128,39 @@ document.getElementById('email-verification-form').addEventListener('submit', fu
             // Start countdown timer
             startResendTimer();
             
-            messageDiv.textContent = '✓ Verification code sent! Check your email.';
+            messageDiv.textContent = '✓ Verification code sent! Check your email (and spam folder).';
             messageDiv.className = 'form-message success';
+            messageDiv.style.display = 'block';
             
-        }, function(error) {
-            console.log('FAILED...', error);
-            messageDiv.textContent = '✗ Failed to send code. Please try again.';
+        })
+        .catch(function(error) {
+            console.error('❌ FAILED to send email:', error);
+            console.error('Error details:', JSON.stringify(error, null, 2));
+            
+            let errorMsg = '✗ Failed to send code. ';
+            
+            if (error.status === 400) {
+                errorMsg += 'Invalid Service ID or Template ID. Please check EmailJS dashboard.';
+            } else if (error.status === 401) {
+                errorMsg += 'Authentication failed. Check your Public Key.';
+            } else if (error.status === 404) {
+                errorMsg += 'Service or Template not found. Verify IDs in EmailJS dashboard.';
+            } else {
+                errorMsg += 'Error: ' + (error.text || error.message || 'Unknown error');
+            }
+            
+            messageDiv.textContent = errorMsg;
             messageDiv.className = 'form-message error';
+            messageDiv.style.display = 'block';
+            
+            // Show error details in alert for debugging
+            alert('EmailJS Error:\n\n' + 
+                  'Status: ' + (error.status || 'N/A') + '\n' +
+                  'Message: ' + (error.text || error.message || 'Unknown') + '\n\n' +
+                  'Check console for details.');
         })
         .finally(() => {
-            button.textContent = 'Send Verification Code';
+            button.innerHTML = '<i class="fas fa-paper-plane"></i> Send Verification Code';
             button.disabled = false;
         });
 });
@@ -103,6 +170,7 @@ document.getElementById('changeEmailBtn').addEventListener('click', function() {
     document.getElementById('code-step').style.display = 'none';
     document.getElementById('email-step').style.display = 'block';
     document.getElementById('form-message').textContent = '';
+    document.getElementById('form-message').style.display = 'none';
     clearResendTimer();
     
     // Clear code inputs
@@ -114,6 +182,8 @@ document.getElementById('changeEmailBtn').addEventListener('click', function() {
 const codeInputs = document.querySelectorAll('.code-input');
 codeInputs.forEach((input, index) => {
     input.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        
         if (this.value.length === 1 && index < codeInputs.length - 1) {
             codeInputs[index + 1].focus();
         }
@@ -125,10 +195,15 @@ codeInputs.forEach((input, index) => {
         }
     });
     
-    // Only allow numbers
-    input.addEventListener('keypress', function(e) {
-        if (!/[0-9]/.test(e.key)) {
-            e.preventDefault();
+    input.addEventListener('paste', function(e) {
+        e.preventDefault();
+        const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '');
+        
+        if (pastedData.length === 6) {
+            codeInputs.forEach((inp, idx) => {
+                inp.value = pastedData[idx] || '';
+            });
+            codeInputs[5].focus();
         }
     });
 });
@@ -146,46 +221,47 @@ document.getElementById('code-verification-form').addEventListener('submit', fun
         enteredCode += input.value;
     });
     
-    // Check if code is complete
     if (enteredCode.length !== 6) {
         messageDiv.textContent = '✗ Please enter the complete 6-digit code!';
         messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
         return;
     }
     
-    // Check expiry
     if (Date.now() > codeExpiryTime) {
         messageDiv.textContent = '✗ Code expired! Please request a new code.';
         messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
         return;
     }
     
-    button.textContent = 'Verifying...';
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
     button.disabled = true;
     
-    // Verify code
+    console.log('🔍 Verifying code:', enteredCode, '===', generatedCode);
+    
     if (enteredCode === generatedCode) {
         messageDiv.textContent = '✓ Email verified successfully!';
         messageDiv.className = 'form-message success';
+        messageDiv.style.display = 'block';
         
         setTimeout(() => {
-            // Show contact form
             document.getElementById('code-step').style.display = 'none';
             document.getElementById('contact-step').style.display = 'block';
             document.getElementById('verified-email').textContent = userEmail;
-            messageDiv.textContent = '';
+            messageDiv.style.display = 'none';
             clearResendTimer();
         }, 1500);
     } else {
         messageDiv.textContent = '✗ Invalid code! Please try again.';
         messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
         
-        // Clear inputs
         codeInputs.forEach(input => input.value = '');
         codeInputs[0].focus();
     }
     
-    button.textContent = 'Verify Code';
+    button.innerHTML = '<i class="fas fa-check"></i> Verify Code';
     button.disabled = false;
 });
 
@@ -194,37 +270,44 @@ document.getElementById('resendBtn').addEventListener('click', function() {
     const messageDiv = document.getElementById('form-message');
     const button = this;
     
-    button.textContent = 'Sending...';
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     button.disabled = true;
     
-    // Generate new code
     generatedCode = generateVerificationCode();
     codeExpiryTime = Date.now() + (5 * 60 * 1000);
     
+    console.log('🔄 Resending code:', generatedCode);
+    
     const templateParams = {
         to_email: userEmail,
+        to_name: userEmail.split('@')[0],
+        from_name: "Sasindu Maleesha Portfolio",
+        message: `Your verification code is: ${generatedCode}\n\nThis code will expire in 5 minutes.\n\nIf you didn't request this code, please ignore this email.`,
         verification_code: generatedCode,
-        expiry_time: '5 minutes'
+        expiry_time: '5 minutes',
+        reply_to: userEmail
     };
     
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_VERIFICATION_TEMPLATE_ID, templateParams)
         .then(function(response) {
-            messageDiv.textContent = '✓ New code sent!';
+            console.log('✅ Code resent successfully!');
+            messageDiv.textContent = '✓ New code sent! Check your email.';
             messageDiv.className = 'form-message success';
+            messageDiv.style.display = 'block';
             
-            // Clear previous inputs
             codeInputs.forEach(input => input.value = '');
             codeInputs[0].focus();
             
-            // Restart timer
             startResendTimer();
-            
-        }, function(error) {
-            messageDiv.textContent = '✗ Failed to resend code.';
+        })
+        .catch(function(error) {
+            console.error('❌ Failed to resend:', error);
+            messageDiv.textContent = '✗ Failed to resend code. Error: ' + (error.text || error.message);
             messageDiv.className = 'form-message error';
+            messageDiv.style.display = 'block';
         })
         .finally(() => {
-            button.textContent = 'Resend Code';
+            button.innerHTML = '<i class="fas fa-redo"></i> Resend Code';
         });
 });
 
@@ -253,21 +336,25 @@ function clearResendTimer() {
         clearInterval(resendTimer);
         resendTimer = null;
     }
+    const timerText = document.getElementById('timer-text');
+    if (timerText) {
+        timerText.textContent = '';
+    }
 }
 
 // ========================
-// CONTACT FORM (After Verification)
+// CONTACT FORM
 // ========================
 document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const button = this.querySelector('button');
     const messageDiv = document.getElementById('form-message');
-    const originalText = button.textContent;
     
-    button.textContent = 'Sending...';
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     button.disabled = true;
     messageDiv.textContent = '';
+    messageDiv.style.display = 'none';
     
     const templateParams = {
         from_name: this.querySelector('[name="from_name"]').value,
@@ -278,26 +365,22 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CONTACT_TEMPLATE_ID, templateParams)
         .then(function(response) {
-            console.log('SUCCESS!', response.status);
+            console.log('✅ Message sent successfully!');
             
             messageDiv.textContent = '✓ Message sent successfully! We will reply to ' + userEmail;
             messageDiv.className = 'form-message success';
+            messageDiv.style.display = 'block';
             document.getElementById('contact-form').reset();
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.disabled = false;
-            }, 3000);
-            
-        }, function(error) {
-            console.log('FAILED...', error);
-            messageDiv.textContent = '✗ Failed to send message. Please try again.';
+        })
+        .catch(function(error) {
+            console.error('❌ Failed to send message:', error);
+            messageDiv.textContent = '✗ Failed to send message. Error: ' + (error.text || error.message);
             messageDiv.className = 'form-message error';
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.disabled = false;
-            }, 3000);
+            messageDiv.style.display = 'block';
+        })
+        .finally(() => {
+            button.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            button.disabled = false;
         });
 });
 
