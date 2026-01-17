@@ -75,7 +75,7 @@ body {
 /* Login Button (Top Right) */
 .login-btn {
     position: fixed;
-    top: 20px;
+    top: 70px;
     right: 20px;
     padding: 10px 25px;
     background: linear-gradient(135deg, #8b5cf6, #6366f1);
@@ -101,7 +101,7 @@ body {
 /* User Info (After Login) */
 .user-info {
     position: fixed;
-    top: 20px;
+    top: 70px;
     right: 20px;
     display: flex;
     align-items: center;
@@ -875,7 +875,7 @@ footer p {
     }
     
     .login-btn, .user-info {
-        top: 10px;
+        top: 60px;
         right: 10px;
         font-size: 14px;
         padding: 8px 15px;
