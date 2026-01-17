@@ -3,312 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Under Maintenance</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e27, #1a1f3a);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(139, 92, 246, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-        }
-
-        .container {
-            max-width: 600px;
-            text-align: center;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 30px;
-            padding: 60px 40px;
-            backdrop-filter: blur(10px);
-            animation: fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .icon {
-            font-size: 100px;
-            margin-bottom: 30px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #8b5cf6, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: #c7d2fe;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .countdown-item {
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            border-radius: 15px;
-            padding: 20px;
-            min-width: 100px;
-        }
-
-        .countdown-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #8b5cf6, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        .countdown-label {
-            font-size: 0.9rem;
-            color: #c7d2fe;
-            margin-top: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(139, 92, 246, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #6366f1);
-            border-radius: 10px;
-            animation: progress 3s ease infinite;
-        }
-
-        @keyframes progress {
-            0% { width: 0%; }
-            50% { width: 100%; }
-            100% { width: 0%; }
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #c7d2fe;
-            text-decoration: none;
-            font-size: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background: linear-gradient(135deg, #8b5cf6, #6366f1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
-        }
-
-        .status {
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            color: #6ee7b7;
-            padding: 15px 30px;
-            border-radius: 25px;
-            display: inline-block;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .status-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #10b981;
-            border-radius: 50%;
-            margin-right: 10px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 40px 30px; }
-            .countdown { flex-wrap: wrap; }
-            .countdown-item { min-width: 80px; padding: 15px; }
-            .countdown-value { font-size: 2rem; }
-        }
-    </style>
+    <title>Sasindu Maleesha - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="bg-animation"></div>
     <div class="particles" id="particles"></div>
 
-    <div class="container">
-        <div class="icon">🛠️</div>
+    <!-- Login Button (Top Right) -->
+    <button class="login-btn" id="loginBtn">
+        <i class="fas fa-user"></i> Login
+    </button>
+
+    <!-- User Info (After Login) -->
+    <div class="user-info" id="userInfo" style="display: none;">
+        <span id="userName"></span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="intro">
+            <img src="https://i.pinimg.com/236x/62/48/03/624803bee204bc2b7761449dcc502821.jpg" alt="Profile Picture">
+            <h1>Sasindu Maleesha</h1>
+            <p class="tagline">Web Developer & Designer | Problem Solver</p>
+            <div class="social-links">
+                <a href="https://web.facebook.com/sasindu.maleesha.999" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/sasindu-maleesha-65b5ba334/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/sasindu999" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/sasindu_maleesha/" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="#contact" class="btn">Let's Work Together</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="https://i.pinimg.com/236x/62/48/03/624803bee204bc2b7761449dcc502821.jpg" alt="Profile Picture">
+            <p>Hello! I'm Sasindu Maleesha, a passionate web developer from Sri Lanka. I specialize in front-end development, social media account recovery, and solving complex problems. With a keen eye for design and a commitment to creating functional, beautiful websites, I bring ideas to life through code.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-content">
+            <div class="skill-category">
+                <h3>Frontend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>HTML5</span>
+                        <span class="percentage">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>CSS3</span>
+                        <span class="percentage">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>JavaScript</span>
+                        <span class="percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>React</span>
+                        <span class="percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="80"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Backend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Node.js</span>
+                        <span class="percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Express</span>
+                        <span class="percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>MongoDB</span>
+                        <span class="percentage">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>SQL</span>
+                        <span class="percentage">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="70"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>UI/UX Design</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Figma</span>
+                        <span class="percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Adobe XD</span>
+                        <span class="percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Photoshop</span>
+                        <span class="percentage">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Illustrator</span>
+                        <span class="percentage">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="progress" data-progress="70"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>My Portfolio</h2>
+        <div class="portfolio-content">
+            <div class="project">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*e3NXmbnpZNpSQ4ltzXdTHg.png" alt="Project 1">
+                <h3>E-Commerce Website</h3>
+            </div>
+            <div class="project">
+                <img src="https://i.ytimg.com/vi/S9NOXjdipl4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB5kbDLrc6hzcf_27aVON0CBkEdRg" alt="Project 2">
+                <h3>Portfolio Website</h3>
+            </div>
+            <div class="project">
+                <img src="https://www.mailerlite.com/img/containers/assets/features/create-a-blog-hero-en.jpg/c129104e07caad0bc2946e489d31cd9a.webp" alt="Project 3">
+                <h3>Blog Platform</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
         
-        <div class="status">
-            <span class="status-dot"></span>
-            WebSite Under Maintenance
+        <!-- Step 1: Email Input -->
+        <div id="email-step" class="contact-step">
+            <form id="email-verification-form">
+                <input type="email" id="user-email" placeholder="Enter your email address" required>
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Send Verification Code
+                </button>
+            </form>
+            <p class="contact-note">📧 We'll send you a verification code to confirm your email</p>
         </div>
 
-        <h1>We'll Be Back Soon!</h1>
-        
-        <p>
-            We're currently performing scheduled maintenance to improve your experience. 
-            We'll be back online shortly!
-        </p>
-
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <!-- Step 2: Code Verification -->
+        <div id="code-step" class="contact-step" style="display: none;">
+            <div class="verification-info">
+                <p>✉️ Verification code sent to: <strong id="display-email"></strong></p>
+                <button class="change-email-btn" id="changeEmailBtn">
+                    <i class="fas fa-edit"></i> Change Email
+                </button>
+            </div>
+            <form id="code-verification-form">
+                <div class="code-input-group">
+                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-check"></i> Verify Code
+                </button>
+                <button type="button" class="resend-btn" id="resendBtn">
+                    <i class="fas fa-redo"></i> Resend Code
+                </button>
+            </form>
+            <p class="contact-note" id="timer-text"></p>
         </div>
 
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="countdown-value" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
+        <!-- Step 3: Contact Form -->
+        <div id="contact-step" class="contact-step" style="display: none;">
+            <div class="verified-badge">
+                <i class="fas fa-check-circle"></i> Email Verified: <strong id="verified-email"></strong>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
-            </div>
+            <form id="contact-form">
+                <input type="text" name="from_name" placeholder="Your Name" required minlength="2">
+                <textarea name="message" placeholder="Your Message" required minlength="10"></textarea>
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
         </div>
 
-        <p style="font-size: 1rem; color: #9ca3af;">
-            Expected completion: <strong id="completionTime">Calculating...</strong>
-        </p>
+        <div id="form-message" class="form-message"></div>
+    </section>
 
+    <footer>
         <div class="social-links">
-            <a href="https://web.facebook.com/sasindu.maleesha.999" class="social-link" title="Facebook">📘</a>
-            <a href="https://www.linkedin.com/in/sasindu-maleesha-65b5ba334/" class="social-link" title="LinkedIn">💼</a>
-            <a href="https://x.com/sasindu999" class="social-link" title="Twitter">🐦</a>
-            <a href="https://www.instagram.com/sasindu_maleesha/" class="social-link" title="Instagram">📷</a>
+            <a href="https://web.facebook.com/sasindu.maleesha.999" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/sasindu-maleesha-65b5ba334/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/sasindu999" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/sasindu_maleesha/" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2024-2025 Sasindu Maleesha. All rights reserved.</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+                <div class="auth-divider">OR</div>
+                <button type="button" class="google-btn" id="googleLogin">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form" style="display: none;">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="signup-name" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signup-password" placeholder="Password (min 6 characters)" required>
+                </div>
+                <button type="submit" class="auth-btn">Sign Up</button>
+                <div class="auth-divider">OR</div>
+                <button type="button" class="google-btn" id="googleSignup">
+                    <i class="fab fa-google"></i> Sign up with Google
+                </button>
+            </form>
+
+            <div id="auth-message" class="auth-message"></div>
         </div>
     </div>
 
-    <script>
-        // Create particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = Math.random() * 5 + 2 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        // Countdown timer (set maintenance end time here)
-        // Example: 2 hours from now
-        const maintenanceEndTime = new Date().getTime() + (2 * 60 * 60 * 1000);
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = maintenanceEndTime - now;
-
-            if (distance < 0) {
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                document.getElementById('completionTime').textContent = 'Completed! Reloading...';
-                setTimeout(() => location.reload(), 3000);
-                return;
-            }
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-
-            const endDate = new Date(maintenanceEndTime);
-            document.getElementById('completionTime').textContent = 
-                endDate.toLocaleString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric', 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                });
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // Auto refresh every 5 minutes to check if maintenance is over
-        setTimeout(() => location.reload(), 5 * 60 * 1000);
-    </script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
-
