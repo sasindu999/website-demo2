@@ -17,7 +17,7 @@ const auth = firebase.auth();
 // ========================
 // EMAILJS CONFIGURATION & TEST
 // ========================
-console.log('🔧 Initializing EmailJS...');
+console.log('📧 Initializing EmailJS...');
 
 // Initialize EmailJS
 emailjs.init("uuSSWER-Oh7S4OsL6");
@@ -99,7 +99,7 @@ document.getElementById('email-verification-form').addEventListener('submit', fu
     userEmail = email;
     codeExpiryTime = Date.now() + (5 * 60 * 1000);
     
-    console.log('🔑 Generated Code:', generatedCode);
+    console.log('🔐 Generated Code:', generatedCode);
     console.log('📨 Service ID:', EMAILJS_SERVICE_ID);
     console.log('📝 Template ID:', EMAILJS_VERIFICATION_TEMPLATE_ID);
     
@@ -505,11 +505,10 @@ tabButtons.forEach(btn => {
 // ========================
 auth.onAuthStateChanged(user => {
     if (user) {
-        loginBtn.style.display = 'none';
-        userInfo.style.display = 'flex';
-        userName.textContent = user.displayName || user.email;
-        modal.style.display = 'none';
+        // User is logged in - redirect to maintenance page
+        window.location.href = 'maintenance.html';
     } else {
+        // User is not logged in - show login button
         loginBtn.style.display = 'block';
         userInfo.style.display = 'none';
     }
@@ -532,9 +531,10 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     
     auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            messageDiv.textContent = '✓ Login successful!';
+            messageDiv.textContent = '✓ Login successful! Redirecting...';
             messageDiv.className = 'auth-message success';
             this.reset();
+            // Redirect will happen automatically via onAuthStateChanged
         })
         .catch((error) => {
             messageDiv.textContent = '✗ ' + error.message;
@@ -569,9 +569,10 @@ document.getElementById('signup-form').addEventListener('submit', function(e) {
             });
         })
         .then(() => {
-            messageDiv.textContent = '✓ Account created successfully!';
+            messageDiv.textContent = '✓ Account created successfully! Redirecting...';
             messageDiv.className = 'auth-message success';
             this.reset();
+            // Redirect will happen automatically via onAuthStateChanged
         })
         .catch((error) => {
             messageDiv.textContent = '✗ ' + error.message;
@@ -594,8 +595,9 @@ document.getElementById('googleLogin').addEventListener('click', function() {
     
     auth.signInWithPopup(googleProvider)
         .then((result) => {
-            messageDiv.textContent = '✓ Logged in with Google!';
+            messageDiv.textContent = '✓ Logged in with Google! Redirecting...';
             messageDiv.className = 'auth-message success';
+            // Redirect will happen automatically via onAuthStateChanged
         })
         .catch((error) => {
             messageDiv.textContent = '✗ ' + error.message;
@@ -609,8 +611,9 @@ document.getElementById('googleSignup').addEventListener('click', function() {
     
     auth.signInWithPopup(googleProvider)
         .then((result) => {
-            messageDiv.textContent = '✓ Account created with Google!';
+            messageDiv.textContent = '✓ Account created with Google! Redirecting...';
             messageDiv.className = 'auth-message success';
+            // Redirect will happen automatically via onAuthStateChanged
         })
         .catch((error) => {
             messageDiv.textContent = '✗ ' + error.message;
